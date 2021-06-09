@@ -1,7 +1,10 @@
 import org.junit.Before;
-import org.junit.Test;
-import static org.junit.Assert.*;
-
+import org.junit.jupiter.api.Test;
+//import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
+import static java.time.Duration.ofSeconds;
+import static java.time.Duration.ofMinutes;
+import static org.junit.jupiter.api.Assertions.assertTimeout;
 
 
 public class test {
@@ -12,6 +15,43 @@ public class test {
         float actual = HMWK.maxOfTwoNumbers(7f,4f);
         assertEquals(expected,actual,0);
     }
+
+    @Test
+    public void maxOfTwoNumbers2() {
+        float expected = 7f;
+        float actual = HMWK.maxOfTwoNumbers(7f,4f);
+        assertEquals(expected,actual,0);
+
+        assertAll("Check Numbers",
+                () -> assertEquals(5f, HMWK.maxOfTwoNumbers(2f,5f)),
+                () -> assertEquals(3f, HMWK.maxOfTwoNumbers(8f,10f))
+        );
+    }
+
+
+//    @Test
+//    void exceptionTesting() {
+//        // set up user
+//        Throwable exception = assertThrows(IllegalArgumentException.class, () -> HMWK.maxOfTwoNumbers(2, 3));
+//        assertEquals("Age must be an Integer.", exception.getMessage());
+//    }
+
+    @Test
+     void timeoutNotExceeded() {
+        assertTimeout(ofSeconds(1L), () -> HMWK.maxOfTwoNumbers(2f,5f));
+    }
+
+    // if you have to check a return value
+
+//    @Test
+//    void timeoutNotExceededWithResult() {
+//        String actualResult = assertTimeout(ofSeconds(1), () -> {
+//            return restService.request(request);
+//        });
+//        assertEquals(200, request.getStatus());
+//    }
+
+
 
     @Test
     public void maxOfThree() {
